@@ -2,8 +2,8 @@
 {
   unikernelType = "rumprun";
   hypervisor = "hvt";
-  binary = "/unikernel/binary";
-  cmdline = "Hello world";
+  binary = "/unikernel/hello.hvt";
+  cmdline = "hello";
   unikernelVersion = "";
   initrd = "";
   block = "";

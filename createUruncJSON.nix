@@ -6,15 +6,17 @@ let
   jsonCreator = import uruncJSON;
   jsonContent = jsonCreator args;
   jsonString = builtins.toJSON jsonContent;
+  jq = nixpkgs.pkgs.jq;
 in
 
 stdenv.mkDerivation rec {
   name = "urunc.json";
   src = null;
   dontUnpack = true;
-  buildInputs = [ ];
+  buildInputs = [ jq ];
   installPhase = ''
     mkdir -p $out
-    echo "${jsonString}" > $out/urunc.json
+    echo "${jsonString}" > $out/temp.json
+    jq '. | map_values(@base64)' $out/temp.json > $out/urunc.json
   '';
 }
