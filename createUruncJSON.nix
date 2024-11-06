@@ -18,5 +18,6 @@ stdenv.mkDerivation rec {
     mkdir -p $out
     echo "${jsonString}" > $out/temp.json
     jq '. | map_values(@base64)' $out/temp.json > $out/urunc.json
+    rm $out/temp.json
   '';
 }
