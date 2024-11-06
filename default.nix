@@ -6,9 +6,10 @@ let
   uruncJSON = ./uruncJSON.nix;
   createUruncJSON = ./createUruncJSON.nix;
   argsFile = ./args.nix;
+  copyFiles = ./copyFile.nix;
 in
 
   # Call the generate-json.nix derivation
   import ./packContainer.nix {
-    inherit stdenv uruncJSON argsFile createUruncJSON;
+    inherit stdenv uruncJSON argsFile createUruncJSON copyFiles;
   }

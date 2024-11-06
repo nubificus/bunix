@@ -1,10 +1,9 @@
-{ stdenv, uruncJSON, argsFile, nixpkgs ? import <nixpkgs> {} }:
+{ stdenv, uruncJSON, annotations, nixpkgs ? import <nixpkgs> {} }:
 
 let
   lib = nixpkgs.lib;
-  args = import argsFile;
   jsonCreator = import uruncJSON;
-  jsonContent = jsonCreator args;
+  jsonContent = jsonCreator annotations;
   jsonString = builtins.toJSON jsonContent;
   jq = nixpkgs.pkgs.jq;
 in
