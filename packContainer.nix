@@ -24,6 +24,8 @@ pkgs.dockerTools.buildImage {
     uruncJsonFile
     userFiles
   ];
+  created="now";
+  compressor="none";
   config = {
     Cmd = [ "unikernel" ];
   };
