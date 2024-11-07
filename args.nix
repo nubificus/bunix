@@ -1,7 +1,7 @@
 # args.nix
 {
   files = {
-    ".//hello.hvt" = "/unikernel/hello.hvt";
+    "./hello.hvt" = "/unikernel/hello.hvt";
   };
   annotations = {
     unikernelType = "rumprun";

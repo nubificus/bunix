@@ -10,21 +10,16 @@ let
   };
   lib = nixpkgs.lib;
   userFiles = lib.mapAttrsToList (srcFile: dstFile: import copyFiles {
-    inherit stdenv srcFile dstFile;
+    inherit stdenv lib srcFile dstFile;
   }) filesToCopy;
-  #userFiles = import copyFiles {
-  #  inherit stdenv lib filesToCopy;
-  #};
-  # createLayer = file: pkgs.dockerTools.buildLayer rec {
-  #   fromImage = "scratch";  # Start from scratch (empty image)
-  #   contents = [ file ];  # Only add this file to the layer
-  #   layerName = "urunc.json";  # Name the layer based on the file name
-  # };
 in
 
+#pkgs.dockerTools.buildLayeredImage {
 pkgs.dockerTools.buildImage {
   name = "hello-docker";
   tag = "trela";
+  #includeStorePaths = true;
+  #contents = [
   copyToRoot = [
     uruncJsonFile
     userFiles
