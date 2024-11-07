@@ -25,6 +25,8 @@ nix-build default.nix
 
 The above command will create a Docker image tar using the information in
 `args.nix` file. In particular, the `args.nix` file has the following fields:
+- name: The name of the final container image
+- tag: The tag of the final container image
 - files: A list of local files to copy inside the container's rootFS. Every
   entry has a key, which is the path to the local file (relative to CWD) and a
   value, which is the path inside the container rootfs, where the file will be
@@ -33,10 +35,11 @@ The above command will create a Docker image tar using the information in
 
 For exmaple the default content of `args.nix` is the following one:
 ```
-# args.nix
 {
+  name = "hello-rumprun";
+  tag = "latest";
   files = {
-    "./hello.hvt" = "/unikernel/hello.hvt";
+    "./hello1.hvt" = "/unikernel/hello.hvt";
   };
   annotations = {
     unikernelType = "rumprun";
@@ -56,6 +59,8 @@ Therefore, the Nix build will:
    `/unikernel/hello.hvt`.
 2. Setup the `urunc` annotations, creating a `urunc.json` file inside the
    container rootfs.
+3. It will name the final container image after the `hello-rumprun` name and
+   it will tag it with the tag `latest`.
 
 When running `nix-build` the output will be a Docker image tar file in the Nix
 store. Nix by default, wil lalso create a symlink, called `result` in our CWD

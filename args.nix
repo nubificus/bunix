@@ -1,7 +1,9 @@
 # args.nix
 {
+  name = "hello-rumprun";
+  tag = "latest";
   files = {
-    "./hello.hvt" = "/unikernel/hello.hvt";
+    "./hello1.hvt" = "/unikernel/hello.hvt";
   };
   annotations = {
     unikernelType = "rumprun";
