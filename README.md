@@ -50,6 +50,7 @@ For exmaple the default content of `args.nix` is the following one:
     initrd = "";
     block = "";
     blkMntPoint = "";
+    useDMBlock = "";
   };
 }
 ```

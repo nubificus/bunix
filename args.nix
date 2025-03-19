@@ -14,5 +14,6 @@
     initrd = "";
     block = "";
     blkMntPoint = "";
+    useDMBlock = "";
   };
 }
